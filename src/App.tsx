@@ -1,17 +1,8 @@
-// import { useState } from 'react'
+import { useState } from 'react';
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.scss'
 import { InputBtn } from './components/input-btn/input-btn';
-
-
-// const calculatorInputRows = [
-//   ['AC', '(', '(', '/'],
-//   ['7', '8', '9', 'x'],
-//   ['4', '5', '6', '-'],
-//   ['1', '2', '3', '+'],
-//   ['0', '='],
-// ];
 
 export interface InputBtnInterface {
   inputBtnName: string;
@@ -50,9 +41,12 @@ const calculatorInputRows: InputBtnInterface[][] = [
 ];
 
 function App() {
+  const [input, setInput] = useState(0);
   return (
     <main>
-      <header className='output'></header>
+      <header className='output'>
+        {input}
+      </header>
 
       <section className='inputs'>
         {calculatorInputRows.map((inputRow, idx) => {
