@@ -19,7 +19,7 @@ const calculatorInputRows: InputBtnInterface[][] = [
     { inputBtnName: '7', cssClassModifier: 'number' },
     { inputBtnName: '8', cssClassModifier: 'number' },
     { inputBtnName: '9', cssClassModifier: 'number' },
-    { inputBtnName: 'x', cssClassModifier: 'operator' }
+    { inputBtnName: '*', cssClassModifier: 'operator' }
   ],
   [
     { inputBtnName: '4', cssClassModifier: 'number' },
@@ -40,27 +40,31 @@ const calculatorInputRows: InputBtnInterface[][] = [
 ];
 
 function App() {
-  const [input, setInput] = useState('0');
+  const [input, setInput] = useState('');
 
 
   const onClickFunctionHandler = (ev: React.MouseEvent<HTMLDivElement>) => {
 
-    const inputBtnVal = ev.currentTarget.textContent;
+    // NOTE: these divs will always have textContent
+    const inputBtnVal = ev.currentTarget.textContent as string;
     switch (inputBtnVal) {
       case 'AC':
+        setInput('');
         break;
 
       case '=':
+        setInput(evaluate(input));
         break;
 
       default:
-
+        handleInputChange(inputBtnVal);
         break;
     }
   }
 
   const handleInputChange = (value: string) => {
     setInput((prevInput) => prevInput + value);
+    console.log(input);
   };
 
   return (
