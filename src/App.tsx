@@ -1,6 +1,5 @@
 import { useState } from 'react';
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import { evaluate } from 'mathjs';
 import './App.scss'
 import { InputBtn } from './components/input-btn/input-btn';
 
@@ -41,12 +40,34 @@ const calculatorInputRows: InputBtnInterface[][] = [
 ];
 
 function App() {
-  const [input, setInput] = useState(0);
+  const [input, setInput] = useState('0');
+
+
+  const onClickFunctionHandler = (ev: React.MouseEvent<HTMLDivElement>) => {
+
+    const inputBtnVal = ev.currentTarget.textContent;
+    switch (inputBtnVal) {
+      case 'AC':
+        break;
+
+      case '=':
+        break;
+
+      default:
+
+        break;
+    }
+  }
+
+  const handleInputChange = (value: string) => {
+    setInput((prevInput) => prevInput + value);
+  };
+
   return (
     <main>
-      <header className='output'>
+      <div className='output'>
         {input}
-      </header>
+      </div>
 
       <section className='inputs'>
         {calculatorInputRows.map((inputRow, idx) => {
@@ -54,7 +75,7 @@ function App() {
             <div key={idx} className="inputs__row">
               {inputRow.map((input) => {
                 return (
-                  <InputBtn key={input.inputBtnName} inputBtnName={input.inputBtnName} cssClassModifier={input.cssClassModifier} />
+                  <InputBtn key={input.inputBtnName} onClickFunctionHandler={onClickFunctionHandler} inputBtn={input} />
                 )
               })}
             </div>

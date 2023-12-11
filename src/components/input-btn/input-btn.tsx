@@ -1,9 +1,16 @@
+import React from 'react';
 import { InputBtnInterface } from "../../App";
 
-export function InputBtn(props: Readonly<InputBtnInterface>) {
+interface Props {
+  inputBtn: InputBtnInterface;
+  onClickFunctionHandler: (event: React.MouseEvent<HTMLDivElement>) => void;
+}
+
+export function InputBtn(props: Readonly<Props>) {
+
   return (
-    <div className={`inputs__input inputs__input--${props.cssClassModifier}`}>
-      {props.inputBtnName}
+    <div onClick={(ev) => props.onClickFunctionHandler(ev)} className={`inputs__input inputs__input--${props.inputBtn.cssClassModifier}`}>
+      {props.inputBtn.inputBtnName}
     </div>
   )
 }
